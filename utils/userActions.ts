@@ -14,7 +14,7 @@ async function checkUserExists(email: string, client: CtlxClientType) {
     if (userResponse.error) {
         throw new Error(`User search failed: ${userResponse.error.message}.`)
     }
-    if (userResponse.data[0]) {
+   if (userResponse.data && userResponse.data[0]) {
         userId = userResponse.data[0].id
     }
     return userId
