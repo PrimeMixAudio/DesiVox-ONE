@@ -54,7 +54,12 @@ export async function createUser(
     const user = await client.POST('/v3/users', {
         body: body,
     });
-  if (user.error) {
+    console.info('DEBUG createUser response:', JSON.stringify({
+        error: user.error,
+        data: user.data,
+        status: user.response?.status,
+    }));
+    if (user.error) {
         throw new Error(`User creation failed: ${user.error.message}`);
     }
     if (!user.data) {
