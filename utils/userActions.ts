@@ -54,8 +54,11 @@ export async function createUser(
     const user = await client.POST('/v3/users', {
         body: body,
     });
-    if (user.error) {
+  if (user.error) {
         throw new Error(`User creation failed: ${user.error.message}`);
+    }
+    if (!user.data) {
+        throw new Error(`User creation failed: no data returned from Cryptlex API`);
     }
     return user.data.id
 }
